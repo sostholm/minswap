@@ -1,8 +1,11 @@
 [tool.poetry]
-name = "minswap"
-version = "0.1.0"
+name = "minswap_oura"
+version = "0.1.1"
 description = ""
 authors = ["Samuel Ostholm <kalltrum@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/sostholm/minswap"
+repository = "https://github.com/sostholm/minswap"
 
 [tool.poetry.dependencies]
 python = "^3.8"

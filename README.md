@@ -1,6 +1,9 @@
 # Translated to python from JS, source: https://github.com/minswap/blockfrost-adapter/blob/main/README.md?plain=1
 
-Trying to stay as close to the original as possible.
+Modified to work with Oura and mongoDB
+- [x] Get current pair price
+- [ ] Get historical pair price
+
 
 # Minswap Blockfrost Adapter
 

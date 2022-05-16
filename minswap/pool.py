@@ -41,11 +41,14 @@ class PoolState:
     datumHash: str
     assetA: str
     assetB: str
+    block_number: int
 
-    def __init__(self, txIn: TxIn, value: Value, datumHash: str=None):
+    def __init__(self, txIn: TxIn, value: Value, datumHash: str=None, block_number: int=None):
         self.txIn = txIn
         self.value = value
         self.datumHash = datumHash
+        self.block_number = block_number
+        
 
         #// validate and memoize assetA and assetB
         relevantAssets = [val for val in value if
@@ -66,7 +69,7 @@ class PoolState:
             # A/B pool
             nonADAAssets = [val for val in relevantAssets if val.unit != "lovelace"]
 
-            assert len(nonADAAssets) == 2, "pool must have 1 non-ADA asset"
+            assert len(nonADAAssets) == 2, "pool must have 2 non-ADA asset"
             self.assetA, self.assetB = normalizeAssets(
                 nonADAAssets[0].unit,
                 nonADAAssets[1].unit
