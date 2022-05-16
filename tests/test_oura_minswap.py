@@ -1,4 +1,4 @@
-from minswap import __version__, OuraAdapter, NetworkId
+from minswap_oura import __version__, OuraAdapter, NetworkId
 import os
 import random
 from pymongo import MongoClient

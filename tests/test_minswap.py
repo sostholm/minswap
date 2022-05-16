@@ -1,4 +1,4 @@
-from minswap import __version__, BlockfrostAdapter, NetworkId
+from minswap_oura import __version__, BlockfrostAdapter, NetworkId
 import os
 import random
 
