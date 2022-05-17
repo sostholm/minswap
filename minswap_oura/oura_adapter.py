@@ -16,6 +16,7 @@ from .types import NetworkId, Value
 from pymongo.cursor import Cursor
 from blockfrost import BlockFrostApi, ApiUrls
 import pandas as pd
+from binascii import unhexlify
 
 @dataclass
 class BlockfrostAdapterOptions:
@@ -315,7 +316,7 @@ class OuraAdapter:
     def getTicker(self, asset: str) -> int:        
         try:
             assetAInfo = resolve_asset(asset, self.assets_collection, self.api)
-            ticker = assetAInfo.metadata.ticker if assetAInfo.metadata and assetAInfo.metadata.ticker else assetAInfo.asset_name.decode()
+            ticker = assetAInfo.metadata.ticker if assetAInfo.metadata and assetAInfo.metadata.ticker else unhexlify(assetAInfo.asset_name.encode()).decode()
             return ticker
         except Exception as err:
         # if isinstance(err, BlockfrostServerError) and err.status_code == 404):
