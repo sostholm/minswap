@@ -208,17 +208,21 @@ class OuraAdapter:
                 self.pools.append(pool)
 
         # Update pools
+        to_be_replaced = []
         for pool in new_pool_states:
-            for old_pool in self.pools:
+            for index, old_pool in enumerate(self.pools):
                 if (
-                    new_pool_states[index].assetA == pool_state.assetA 
-                    and new_pool_states[index].assetB == pool_state.assetB
-                    and new_pool_states[index].block_number < pool_state.block_number
+                    pool.assetA == old_pool.assetA 
+                    and pool.assetB == old_pool.assetB
+                    and pool.block_number > old_pool.block_number
                     # and new_pool_states[index].reserveA > self.min_lovelace_locked
                 ):
-                    old_pool[index] = pool
+                    to_be_replaced.append({"index": index, "pool": pool})              
                     break
-            
+        
+        for entry in to_be_replaced:
+            del self.pools[entry['index']]
+            self.pools.insert(entry['index'], entry['pool'])
 
         return self.pools
 
