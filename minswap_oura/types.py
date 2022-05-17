@@ -11,7 +11,6 @@ class Value:
   unit: str
   quantity: str
 
-
 @dataclass
 class TxIn:
   txHash: str

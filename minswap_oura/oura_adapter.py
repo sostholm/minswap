@@ -100,7 +100,7 @@ class OuraAdapter:
                     pool_utxos = []
 
                     for asset in utxo['assets']:
-                        asset['unit'] = f'{asset["policy"]}{asset["asset"]}'
+                        asset['unit'] = f'{asset["policy"]}.{asset["asset"]}'
                         relevant = False
                         
                         if(
@@ -308,6 +308,14 @@ class OuraAdapter:
         # if isinstance(err, BlockfrostServerError) and err.status_code == 404):
             return 0
 
+    def getTicker(self, asset: str) -> int:        
+        try:
+            assetAInfo = resolve_asset(asset, self.assets_collection, self.api)
+            ticker = assetAInfo.metadata.ticker if assetAInfo.metadata and assetAInfo.metadata.ticker else assetAInfo.asset_name.decode()
+            return ticker
+        except Exception as err:
+        # if isinstance(err, BlockfrostServerError) and err.status_code == 404):
+            return 0
     #/**
     #* Get pool price.
     #* @param {Object} params - The parameters to calculate pool price.
